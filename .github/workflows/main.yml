@@ -5,6 +5,7 @@ name: Automated testing using pytest framework
 on:
   push:
       branches: [main]
+  workflow_dispatch:
 
 permissions: read-all
 
@@ -13,6 +14,13 @@ jobs:
       runs-on: windows-latest
 
       steps:
-      - uses: d33pster/automated-pytest@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Pytest
+        uses: d33pster/automated-pytest@v2
         with:
           Library: python-cli-example
+      - name: Install Falek8
+        run: pip install flake8
+      - name: Lint code
+        run: flake8 .
