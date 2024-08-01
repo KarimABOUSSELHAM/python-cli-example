@@ -1,0 +1,18 @@
+# This workflow will continuously run pytest on each push 
+
+name: Automated testing using pytest framework
+
+on:
+  push:
+      branches: [main]
+
+permissions: read-all
+
+jobs:
+  continuous_integration:
+      runs-on: windows-latest
+
+      steps:
+      - uses: d33pster/automated-pytest@v2
+        with:
+          Library: python-cli-example
